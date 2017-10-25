@@ -1,0 +1,46 @@
+{% extends "personal_site/base.html" %}
+{% block title %}My Notes{% endblock %}
+{% block content %}
+<h1>My Notes</h1>
+
+ <hr>
+
+        <!-- Title -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h3>Latest Notes</h3>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- Page Features -->
+        <div class="row">
+            {% if tag %}
+            <h2>Posts tagged with "{{ tag.name }}"</h2>
+            {% endif %}
+
+        {% for note in notes %}
+            <div class="col-md-3 col-sm-6 hero-feature">
+                <div class="thumbnail">
+                    <img src="http://placehold.it/800x500" alt="">
+                    <div class="caption">
+                        <h3>{{ note.title |truncatewords:2}}</h3>
+                        <p>{{ note.body|truncatewords:4}}</p>
+                        <p>
+                             <a href="{{ note.get_absolute_url }}" class="btn btn-primary">More Info</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        {% endfor %}
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+{% include "personal_site/pagination.html" with page=notes %}
+
+
+{% endblock %}
+

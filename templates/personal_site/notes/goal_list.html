@@ -1,0 +1,72 @@
+{% extends "personal_site/base.html" %}
+{% load static %}
+{% block title %}
+{% if category %}{{ category.name }}{% else %}Goals{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="row">
+
+            <!-- Blog Post Content Column -->
+            <div class="col-lg-8">
+
+                <!-- Blog Post -->
+
+                <!-- Title -->
+                <h1>{% if category %}{{ category.name }}{% else %}Goals{% endif %}</h1>
+
+
+                <hr>
+
+
+                <!-- Post Content -->
+                {% for goal in goals %}
+                <div class="item">
+                <a href="{{ goal.get_absolute_url }}">
+
+                <a href="{{ goal.get_absolute_url }}">{{ goal.name }}</a><br>
+                {{ goal.achieved }}
+                    {{ goal.body }}
+                </div>
+                <hr>
+                {% endfor %}
+
+            </div>
+
+            <!-- Blog Sidebar Widgets Column -->
+            <div class="col-md-4">
+
+                <!-- Blog Search Well -->
+                <div class="well">
+                    <h4>Search goals</h4>
+                    <div class="input-group">
+                        <input type="text" class="form-control">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">
+                                <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                        </span>
+                    </div>
+                    <!-- /.input-group -->
+                </div>
+
+                <!-- Blog Categories Well -->
+                <div class="well">
+                    <h4>Categories</h4>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <ul class="list-unstyled">
+                                {% for c in categories %}
+                                <li {% if category.slug == c.slug %}class="selected"{% endif %}>
+                                <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+{% endblock %}

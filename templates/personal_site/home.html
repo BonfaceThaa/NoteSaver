@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+{% extends "personal_site/base.html" %}
+<html lang="en">
+{% load static %}
+
+
+    <!-- Page Content -->
+
+{% block content %}
+    <div class="container">
+
+        <!-- Jumbotron Header -->
+        <header class="jumbotron hero-spacer">
+            <h1>Meet BonnyFlowy</h1>
+            <p>This is where i organize my brain work. Most of the content is based on new things and ideas i have come across or simply thought about!</p>
+            <p><a href="{% url 'notes:note_list' %}" class="btn btn-primary btn-large">Explore</a>
+            </p>
+        </header>
+
+
+
+{% endblock %}
